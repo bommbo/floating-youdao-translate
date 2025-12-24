@@ -35,12 +35,6 @@
   :type 'integer
   :group 'floating-youdao-interactive)
 
-(defcustom floating-youdao-interactive-auto-hide 15
-  "Seconds before auto hide child-frame. Set to nil to disable."
-  :type '(choice (const :tag "Disable" nil)
-                 (number :tag "Seconds"))
-  :group 'floating-youdao-interactive)
-
 ;;; Internal Variables
 
 (defvar floating-youdao-interactive--frame nil
@@ -144,13 +138,7 @@
   (floating-youdao-interactive--make-frame)
   (floating-youdao-interactive--position-frame)
   (make-frame-visible floating-youdao-interactive--frame)
-  (select-frame-set-input-focus floating-youdao-interactive--frame)
-  
-  (when floating-youdao-interactive-auto-hide
-    (setq floating-youdao-interactive--timer
-          (run-at-time floating-youdao-interactive-auto-hide
-                       nil
-                       #'floating-youdao-interactive-hide))))
+  (select-frame-set-input-focus floating-youdao-interactive--frame))
 
 (defun floating-youdao-interactive--translate (text)
   "Translate TEXT and show in interactive frame."
